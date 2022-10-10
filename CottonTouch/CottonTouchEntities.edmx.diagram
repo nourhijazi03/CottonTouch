@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="802fe6cf20504d4bb4c8cfd2db4b7007" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="CottonTouchDbModel.Hotel" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CottonTouchDbModel.Invoice" Width="1.5" PointX="5.375" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CottonTouchDbModel.Item" Width="1.5" PointX="7" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CottonTouchDbModel.ItemServiceRequest" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="CottonTouchDbModel.FK_Table_1_Hotels" ManuallyRouted="false" />
+        <AssociationConnector Association="CottonTouchDbModel.FK_ItemServiceRequests_Items" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CottonTouchDbModel.Role" Width="1.5" PointX="9.375" PointY="1.375" />
+        <EntityTypeShape EntityType="CottonTouchDbModel.User" Width="1.5" PointX="11.625" PointY="1" />
+        <AssociationConnector Association="CottonTouchDbModel.FK_Users_Roles" />
+        <EntityTypeShape EntityType="CottonTouchDbModel.ServiceRequest" Width="1.5" PointX="3.375" PointY="8" />
+        <AssociationConnector Association="CottonTouchDbModel.FK_Table_1_ServiceRequests" />
+        <AssociationConnector Association="CottonTouchDbModel.FK_ItemServiceRequests_ServiceRequests" />
+        <AssociationConnector Association="CottonTouchDbModel.FK_ServiceRequests_Hotels" />
+        <EntityTypeShape EntityType="CottonTouchDbModel.HotelItemPrice" Width="1.5" PointX="11.25" PointY="5.25" />
+        <AssociationConnector Association="CottonTouchDbModel.FK_HotelItemPrice_Hotels" />
+        <AssociationConnector Association="CottonTouchDbModel.FK_HotelItemPrice_Items" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

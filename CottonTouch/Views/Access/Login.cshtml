@@ -1,0 +1,48 @@
+﻿@model CottonTouch.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<link rel="Stylesheet" href="@Href("~/Content/Login.css?v=w")" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+
+<title>Cotton Touch | PMS</title>
+
+@using (Html.BeginForm("Login", "Access", FormMethod.Post))
+{
+
+
+    <div class="login">
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+        @*value="@Html.TextBoxFor(a => a.Name)"
+            value="@Html.PasswordFor(a => a.Password)"*@
+        <h1>Login</h1>
+        <form method="post">
+            <input name="Name" type="text" placeholder="Username" required="required" />
+            <input name="Password" type="password" placeholder="Password" autocomplete="new-password" required="required" />
+
+            <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+
+            @if (TempData["Message"] != null)
+            {
+                <div class="LoginFailed">
+
+                    @TempData["Message"].ToString()
+                </div>
+            }
+
+
+
+        </form>
+    </div>
+}
+

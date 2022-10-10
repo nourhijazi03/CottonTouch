@@ -1,0 +1,81 @@
+﻿@model CottonTouch.ServiceRequest
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ServiceRequest</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalSentItems)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TotalSentItems)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalRecievedItems)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TotalRecievedItems)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ClientSignature)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ClientSignature)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LaundrySignature)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LaundrySignature)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DocumentAttached)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DocumentAttached)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TotalPrice)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Hotel.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Hotel.Name)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ServiceRequestID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

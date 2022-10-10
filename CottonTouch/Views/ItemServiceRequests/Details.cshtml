@@ -1,0 +1,105 @@
+﻿@model CottonTouch.ItemServiceRequest
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ItemServiceRequest</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.QtnSentToLaundry)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QtnSentToLaundry)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.QtnRecievedAtLaundry)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QtnRecievedAtLaundry)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UnitPrice)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.VATPercent)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.VATPercent)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.VATAmount)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.VATAmount)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DiscAmount)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DiscAmount)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NetAmount)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NetAmount)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Item.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Item.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ServiceRequest.DocumentAttached)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ServiceRequest.DocumentAttached)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ItemServiceRequestID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

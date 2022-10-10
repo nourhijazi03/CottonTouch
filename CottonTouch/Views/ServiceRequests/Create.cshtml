@@ -1,0 +1,238 @@
+﻿@model CottonTouch.ServiceRequest
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")*@
+
+
+
+    @using (Html.BeginForm( ))
+    {
+        @*@Html.AntiForgeryToken()*@
+
+
+
+        
+        
+
+
+
+
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Select Hotel and Add Laundry Items to make The Delivery Note</h3>
+
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>*@
+            </div>
+        </div>
+
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <div class="box-body no-padding">
+                <div class="mailbox-controls">
+
+                    <div class="col-12">
+
+                        @Html.LabelFor(model => model.HotelID, "Hotel", htmlAttributes: new { @Placeholder = "select sth", @class = "control-label col-md-12" })
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.DropDownList("HotelID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HotelID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br clear="all" />
+                    </div>
+                    <br />
+                    <br />
+                    <div col="col-12">
+                        <table id="submissionTable" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>Laundry Item Name   </td>
+                                    <td>Quantity</td>
+                                </tr>
+                            </thead>
+
+                            <tr id="tablerow0">
+                                <td>
+                                    <div class="editor-field">
+
+                                        @*<input class="text-box single-line" name="LaundryItemName[0]" type="text" value="" required="required" />*@
+
+                                        <select class="form-control valid valid" id="ItemID0" name="ItemID0" aria-invalid="false" required>
+                                            <option value="0">Select Laundry Item</option>
+                                            @{ foreach (var item in ViewBag.ItemID)
+                                                {
+                                                    <option value="@item.ItemID">@item.Name</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="editor-field">
+                                        <input class="text-box single-line" name="Quantity0" type="text" value="" required />
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-primary" onclick="removeTr(0);">Delete</button>
+                                </td>
+                                <td></td>
+                            </tr>
+
+                        </table>
+                        <p>
+                            <button id="add" type="button" class="btn btn-primary">Add</button>
+                        </p>
+                        <p>
+                            <button id="Confirm" type="button" onclick="confirmDN()" class="btn btn-primary">Confirm</button>
+                        </p>
+                        <hr />
+                        @Html.Hidden("ItemQtnstring", "")
+                        <p>
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </p>
+                    </div>
+                    <!-- /.table -->
+                </div>
+                <!-- /.mail-box-messages -->
+            </div>
+
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+        @*<p id="DNlist" name="DNlist"> </p>*@
+
+
+
+     
+
+
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+
+
+    <!-- page script -->
+    <script>
+        var totalprice = 0.0;
+        var itemsQTN = 0;
+
+
+
+
+
+
+      
+         var options =document.getElementById('ItemID0').options;
+        var optionstring = '';
+        var i;
+        for (i = 0; i < options.length; i++) {
+            optionstring += '<option value="' + options[i].value + '">' + options[i].text + '</option>'
+}
+
+
+        var counter = 1;
+        $(function () {
+            $('#add').click(function () {
+
+
+                $(' <tr id="tablerow'+counter+'">'+
+                    '<td>'+
+                    '<div class="editor-field">'+
+                    '<select class= "form-control valid valid" id = "ItemID'+counter+'" name = "ItemID'+counter+'" aria - invalid="false" required > '+ optionstring +'</select>'+
+                    '</div>'+
+                    '</td>'+
+                    '<td>'+
+                    '<div class="editor-field">'+
+                    '<input class="text-box single-line" id="Quantity'+counter+'"  name="Quantity'+counter+'" type="text" value="" required="required">'+
+                    '</div>'+
+                     '</td>'+
+                     '<td>'+
+                     '<button type="button" class="btn btn-primary" onclick="removeTr('+counter+');">Delete</button>'+
+                     '</td>'+
+                     '<td></td>'+
+                     '</tr>').appendTo('#submissionTable');
+                counter++;
+                return false;
+            });
+        });
+        function removeTr(index) {
+            if (counter > 1) {
+                $('#tablerow' + index).remove();
+                counter--;
+            }
+            return false;
+        }
+
+
+        var DNlist=[]
+        var DNstring;
+
+
+        function confirmDN() {
+
+            DNlist = [];
+
+            var DNlength = submissionTable.rows.length ;
+            var text = "";
+             var i;
+            for (i = 1; i < DNlength; i++) {
+
+                //document.getElementById("Quantity" + i).disabled = true;
+                // document.getElementById("ItemID"+i).disabled=true;
+                $("Quantity" + i).attr('disabled', 'disabled');
+                $("ItemID" + i).attr('disabled', 'disabled');
+                var Quantityinput = $('input:text[name=Quantity' + (i - 1) + ']').val();
+                var ItemsSelect = document.getElementById("ItemID" + (i - 1)).value;
+
+                DNstring = ItemsSelect + ',' + Quantityinput;
+                DNlist.push(DNstring);
+                DNstring = "";
+         
+
+            }
+            var paragraph = document.getElementById("DNlist");
+           var x= DNlist.toString();
+            document.getElementById("ItemQtnstring").value = x;
+
+            alert(DNlist);
+        }
+
+          $(function () {
+            //$('#example1').DataTable()
+            //$('#example2').DataTable({
+            //    'paging': true,
+            //    'lengthChange': false,
+            //    'searching': true,
+            //    'ordering': true,
+            //    'info': true,
+            //    'autoWidth': false
+            //})
+        })
+    </script>
+
+
+
+</body>
+
+</html>

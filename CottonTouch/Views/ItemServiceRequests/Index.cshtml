@@ -1,0 +1,94 @@
+﻿@model IEnumerable<CottonTouch.ItemServiceRequest>
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QtnSentToLaundry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtnRecievedAtLaundry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VATPercent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VATAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceRequest.DocumentAttached)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtnSentToLaundry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtnRecievedAtLaundry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VATPercent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VATAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceRequest.DocumentAttached)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ItemServiceRequestID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ItemServiceRequestID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ItemServiceRequestID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

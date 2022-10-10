@@ -1,0 +1,263 @@
+﻿@model IEnumerable<CottonTouch.ServiceRequest>
+
+@{
+    ViewBag.Title = "Index";}
+
+
+
+<style>
+
+    .fa {
+        display: inline-block;
+        font: normal normal normal 14px/1.5 FontAwesome !important;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+</style>
+
+<br />
+
+<div class="box box-primary">
+
+
+    <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-list-alt"></i> <span>Delivery Notes List</span></h3>
+        <div class="box-tools pull-right">
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- /.box-tools -->
+    <!-- /.box-header -->
+    @using (Html.BeginForm())
+    {
+        <div class="text-left">
+            @Html.ActionLink("Create New Delivery Note", "Create", "ServiceRequests", null, new { @class = "btn btn-success" })
+
+
+
+            @*@Html.ActionLink("Make Invoice", "DeliveryNoteInvoice", "ServiceRequests", null, new { @onclick = "gotoinvoice()", @class = "btn btn-success" })*@
+
+
+
+            @*<button type="submit" id="btn-export-excel" class="btn btn-success btn-sm">Export To Excel</button>*@
+
+            @*<button type="submit" id="btn-export-excel" class="btn btn-success btn-sm">Export To Excel</button>*@
+
+
+        </div>
+        <br />
+        <div class="box" style="background: gainsboro">
+            <div class="box-header" style="background: darkgray;">
+                <h3 class="box-title" style="color:black">Make Invoice  <small >(Open Exapnder)</small></h3>
+                <br />
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" style="background:white" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>*@
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <div class="col-12">
+                            <div class="col-4">
+
+                                <label class="control-label col-md-2"> Hotel</label>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("HotelID", null, htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <br clear="all" />
+                            </div>
+
+                            <div class="col-4">
+
+                                <label class="control-label col-md-2"> From Date:</label>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="text" id="from">
+                                    </div>
+                                </div>
+                                <br clear="all" />
+                            </div>
+
+                            <div class="col-4">
+
+                                <label class="control-label col-md-2"> TO Date:</label>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="text" id="to">
+                                    </div>
+                                </div>
+                                <br clear="all" />
+                            </div>
+
+                        </div>
+
+                        <br /> <a class="invoices btn btn-success" href="#" title="Make Invoice"><span>Make Invoice</span></a>
+                        <br />
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        <br />
+        <div class="no-padding">
+
+            <div class="mailbox-controls">
+                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive " width="100%" cellspacing="0">
+                        <thead>
+
+
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayName("Delivery Note ID")
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Hotel.Name)
+                                </th>
+
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Date)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hotel.Name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+
+                                    <div class="tools" style="width:100px">
+
+                                        @*<a class="btn btn-primary btn-xs" href="@Url.Action("Edit", "ServiceRequests", new { id = item.ServiceRequestID})"><i class="fa fa-pencil"></i></a>*@
+                                        @*<a class="btn btn-primary btn-xs" href="@Url.Action("Details", "ServiceRequests", new { id = item.ServiceRequestID})"><i class="fa fa-list"></i></a>*@
+                                        <a class="btn btn-primary btn-xs" href="@Url.Action("DeliveryNote", "ServiceRequests", new { id = item.ServiceRequestID})"><i class="fa fa-print"></i></a>
+
+                                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "ServiceRequests", new { id = item.ServiceRequestID})"><i class="fa fa-trash"></i></a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+                <!-- /.table -->
+            </div>
+            <!-- /.mail-box-messages -->
+        </div>
+
+    }
+
+
+
+</div>
+
+<!-- /.box-body -->
+<div class="box-footer no-padding">
+
+</div>
+
+
+
+<script type="text/javascript">
+    /* Create an array with the values of all the checkboxes in a column */
+   
+      //$('input[type=text]').change(function () {
+
+      //  gotoinvoice();
+
+      //});
+        $(function() {
+    $("#to").datepicker({
+        onSelect: function(dateText, inst) {
+gotoinvoice();        }
+    });
+});
+    $(function() {
+    $("#from").datepicker({
+        onSelect: function(dateText, inst) {
+gotoinvoice();        }
+    });
+});
+//    $('#from').change(function(){
+//     //Change code!
+//        gotoinvoice();
+
+//    });
+//     $('#to').change(function(){
+//     //Change code!
+//         gotoinvoice();
+//});
+    $(function () {
+        $("#from").datepicker();
+    });
+     $(function () {
+        $("#to").datepicker();
+    });
+
+  
+
+    function gotoinvoice() {
+        var fromdate = document.getElementById("from").value;
+        var todate = document.getElementById("to").value;
+        var hotelid = document.getElementById("HotelID").value;
+     todate = todate.replace(/\//g, ",");
+        fromdate = fromdate.replace(/\//g, ",");
+
+
+
+              $('.invoices').attr('href', 'http://localhost/CottonTouch/ServiceRequests/DeliveryNoteInvoice?from='+fromdate+'&to='+todate+'&hotelid='+hotelid);
+
+
+    }
+
+       $('#demoGrid').DataTable({
+        "paging": true,
+        "pageLength": 50,
+        "pagingType": "full_numbers",
+           "scrollX": true,    
+        "paging": true,
+        "searching": true
+
+    });
+
+</script>
+
